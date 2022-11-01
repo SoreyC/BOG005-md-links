@@ -1,14 +1,14 @@
 const pathNode = require('path');
 const fs = require('fs');
 const { marked } = require('marked');
-const path = require('path');
+const axios = require('axios');
 // const chalk = require('chalk');
 
-let pathprueba = 'Archivos-md-txt/prueba.txt';
+// let pathprueba = 'Archivos-md-txt/prueba.txt';
+let archivo = 'Archivos-md-txt\readme.md'
 
 // const pathProcess = process.argv[2];
 //  console.log('process', pathProcess);
-
 
 
 //resolver rutas relativas en absolutas
@@ -24,6 +24,7 @@ const absolutePath = (route) => {
 };
 //  console.log('ya es absoluta', absolutePath(path));
 
+
 //TODO: JSDOC
 /**
  * 
@@ -31,35 +32,49 @@ const absolutePath = (route) => {
  * @returns data
  * esta funcion se va a usar para extraer los links
  */
-const readFilePromise = (pathprueba) => {
-
+const readFilePromise = (file) => {
     return new Promise((resolve, reject) => {
-        fs.readFile(pathprueba, 'utf8', (error, data) => {
-
+        let linksArray = [];
+        fs.readFile(file, 'utf8', (error, data) => {
             if (error) {
                 reject(error);
             }
-
             //aca se podria de una vez sacar los links
+             const render = new marked.Renderer()
+            render.link = (href, title, text) => {
+                const linkOfData = {
+                  'href': href,
+                  'text': text.split('').slice(0, 60).join(''),
+                  'file': file, 
+                }
+                if (linkOfData.href.includes('http')) {
+                    linksArray.push(linkOfData)
+                  }
+                }
+                marked.marked(data, { render })
+                console.log('que hay aqui', marked);
+                resolve(linksArray)
 
-            resolve({
-                path: pathprueba,
-                data: data,
-            });
-            //console.log(data);
         });
     });
+  
 };
-readFilePromise(pathprueba)
+readFilePromise(archivo)
     .then((res) => {
         console.log(res);
     })
-    .catch((err) => {
-        console.log(err);
-    });
+    // .catch((err) => {
+    //     console.log(err);
+    // });
+
+    const getFileAllobjects = (arrayOfLinks) => {
+        const returnPromise= arrayOfLinks.map(file => readFilePromise(file));
+        return Promise.all(returnPromise).then(res => res)};
+    
+    
+        
 
 
-//Para extraer las extensiones y meterla en la funcion de la lectura de dir
 
 
 // const verifyFilt = (path) => {
@@ -74,7 +89,7 @@ readFilePromise(pathprueba)
 // }
 
 
-//Verificando si existe directorio
+//Verificando si existe directorio. recursividad
 const getMdFiles = (path) => {
     let mdFiles = [];
     if (fs.statSync(path).isDirectory()) {
@@ -98,21 +113,25 @@ console.log(getMdFiles('C:/Users/LABORATORIA/OneDrive/Documentos/MDlinks/BOG005-
 
 
 //mdLinks
-const mdLinks = (path, options) => {
-    return new Promise((resolve, reject) => {
-        if (fs.existsSync(path))
-            //  verifyAbsolut = absolutePath(path);
-            // resolve(verifyAbsolut)
+// const mdLinks = (path, options) => {
+//     return new Promise((resolve, reject) => {
+//         if (fs.existsSync(path))
 
-            console.log('Ruta no válida');
+//             verifyAbsolut = absolutePath(path);
+//             arrayContent = getMdFiles (verifyAbsolut)
+//             resolve(arrayContent)
+        
 
-    })
-}
 
-mdLinks('dele.js')
-    .then(res => {
-        console.log("si sirve", res);
-    });
+//     })
+
+   
+// }
+  
+// mdLinks('readme.md')
+//     .then((res) => {
+//         console.log("si sirve", res);
+//     });
 
 
 
