@@ -1,6 +1,7 @@
 const pathNode = require('path');
 const fs = require('fs');
-const { marked } = require('marked');
+// const marked = require('marked');
+import { marked } from 'marked';
 const axios = require('axios');
 // const chalk = require('chalk');
 
@@ -40,24 +41,21 @@ const readFilePromise = (file) => {
                 reject(error);
             }
             //aca se podria de una vez sacar los links
-             const render = new marked.Renderer()
-            render.link = (href, title, text) => {
+            const renderer = new marked.Renderer()
+            renderer.link = (href, title, text) => {
                 const linkOfData = {
                   'href': href,
-                  'text': text.split('').slice(0, 60).join(''),
+                  'text': text,
                   'file': file, 
                 }
                 if (linkOfData.href.includes('http')) {
-                    linksArray.push(linkOfData)
-                  }
+                    linksArray.push(linkOfData);
                 }
-                marked.marked(data, { render })
-                console.log('que hay aqui', marked);
-                resolve(linksArray)
-
+            }
+            marked.marked(data, { renderer })
+            resolve(linksArray);
         });
-    });
-  
+    }); 
 };
 readFilePromise(archivo)
     .then((res) => {
@@ -69,7 +67,7 @@ readFilePromise(archivo)
 
     const getFileAllobjects = (arrayOfLinks) => {
         const returnPromise= arrayOfLinks.map(file => readFilePromise(file));
-        return Promise.all(returnPromise).then(res => res)};
+        return Promise.all(returnPromise).then(res => res.flat())};
     
     
         
