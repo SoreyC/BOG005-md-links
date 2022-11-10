@@ -1,16 +1,14 @@
 #!/usr/bin/env node
-// const chalk = require('chalk');
-
+const chalk = require('chalk');
 const { mdLinks } = require('./index.js')
-const { statsValidatelinks, statsLinks } = require('./function.js')
+const { statsValidatelinks, statsLinks } = require('./functions.js')
 const figlet = require('figlet')
 
 const argv = process.argv
 const MDvalidate = process.argv[2]
 
-console.log( chalk.cyanBright(figlet.textSync('mdLinks')));
- 
-    
+console.log(chalk.cyanBright(figlet.textSync('mdLinks')));
+  
 
 const commandLine = (MDvalidate, argv) => {
     if (argv[3] === '--stats' && argv[4] === '--validate' || argv[4] === '--stats' && argv[3] === '--validate') {

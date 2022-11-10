@@ -1,7 +1,9 @@
 const pathNode = require('path');
 const fs = require('fs');
 const marked = require('marked');
+// const { marked } = require('marked');
 const axios = require('axios');
+const chalk = require('chalk');
 
 const routeTest = 'Archivos-md-txt';
 
@@ -12,9 +14,11 @@ const absolutePath = (route) => {
   } else {
     return pathNode.resolve(route);
   }
+  // return absolutePath;
 };
-return absolutePath;
-// console.log('ya es absoluta', absolutePath(routeTest));
+
+  // console.log(chalk.redBright('ya es absoluta', absolutePath(routeTest)));
+
 
 //Verificando si existe directorio. recursividad
 const getMdFiles = (path) => {
@@ -36,26 +40,56 @@ const getMdFiles = (path) => {
   return mdFiles
 };
 //console.log('Recursividad', getMdFiles('C:/Users/LABORATORIA/OneDrive/Documentos/MDlinks/BOG005-md-links/Archivos-md-txt'));
-// console.log(getMdFiles('Archivos-md-txt/readme.md'));
+  // console.log(getMdFiles('Archivos-md-txt/readme.md'));
 
-const containerArray = getMdFiles(routeTest)
+const routeAbsolute = absolutePath(routeTest);
+const containerArray = getMdFiles(routeAbsolute)
 
+// const readFilePromise  = (file) => {
+//   let regExpo = new RegExp(/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/); // para obtener solo url
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(file, 'utf8', (error, info) => {
+//       if (!error) {
+//         let linksArray  = [];
+//         let render = new marked.Renderer();
+//         render.link = function (href, title, text) {
+//           if (regExpo.test(href) === true) {
+//             linksArray .push({
+//               href: href,
+//               text: text.slice(0, 50),
+//               file: file,
+//             })
+//           }
+//         };
+//         marked(info, {
+//           renderer: render
+//         });
+//         resolve(linksArray )
+//       }
+//       else {
+//         reject(error)
+//       }
+//     }
+//     );
+//   }) 
+// }
+// readFilePromise(routeAbsolute).then((res)=>console.log(res))
 //TODO: JSDOC
 /**
- * 
  * @param {string} path archivo.md
  * @returns data
  * esta funcion se va a usar para extraer los links
  */
+
+
 const readFilePromise = (file) => {
   return new Promise((resolve, reject) => {
     let linksArray = [];
-    fs.readFile(file, 'utf8', (error, data) => {
-      console.log('que hay en data', data);
+   // console.log('que es file', file);
+    fs.readFile(file, 'utf8', (error, data) => { 
       if (error) {
         resolve(error);
       }
-      
       const renderer = new marked.Renderer()
       renderer.link = (href, title, text) => {
         const linkOfData = {
@@ -67,23 +101,22 @@ const readFilePromise = (file) => {
           linksArray.push(linkOfData);
         }
       }
-      // console.log('que hay en marked', marked);
-      marked.marked(data, { renderer })
+      //console.log('que hay en marked', marked);
+      marked.marked(data, { renderer });
       resolve(linksArray);
     });
+  
   });
 };
-readFilePromise(routeTest)
-    .then((res) => {
-        console.log(res);
-    })
+// readFilePromise('C:/Users/LABORATORIA/OneDrive/Documentos/MDlinks/BOG005-md-links/Archivos-md-txt/Prueba/esMd.md')
+//   .then((res) => {
+//     console.log(res);
+//   })
 
-const getFileAllobjects = (arrayOfLinks) => {
-  const returnPromise = arrayOfLinks.map(file => readFilePromise(file));
+const getFileAllobjects = (linksMdArrays) => {
+  const returnPromise = linksMdArrays.map(file => readFilePromise(file));
   return Promise.all(returnPromise).then(res => res.flat())
 };
-
-getFileAllobjects(prueba).then((res) => { console.log(res)})
 
 const processLink = (link) => {
   return new Promise((resolve, reject) => {
@@ -100,7 +133,6 @@ const processLink = (link) => {
         resolve(link);
       });
   })
-
 }
 const getvalidateLinks = (validateLinks) => {
   let returnValidateLinks = validateLinks.map(link => processLink(link));
@@ -108,10 +140,6 @@ const getvalidateLinks = (validateLinks) => {
 }
 
 const statsLinks = (links) => {
-  // console.log({
-  //     Total: links.length,
-  //     Unique: new Set(links.map((link) => link.href)).size
-  // })
   return {
     Total: links.length,
     Unique: new Set(links.map((link) => link.href)).size
@@ -119,18 +147,11 @@ const statsLinks = (links) => {
   }
 }
 
-  console.log(statsLinks(containerArray));
-
+//console.log(statsLinks(containerArray));
 
 const statsValidatelinks = (links) => {
 
   const failes = links.filter(link => link.ok == '🚫').length
-
-  // console.log( {
-  //     Total: links.length,
-  //     Unique: new Set(links.map((link) => link.href)).size,
-  //     Broken: failes
-  // })
   return {
     Total: links.length,
     Unique: new Set(links.map((link) => link.href)).size,
@@ -139,35 +160,5 @@ const statsValidatelinks = (links) => {
 }
 
 //   console.log(statsValidatelinks(containerArray));
-
-
-
-
-
-
-
-
-
-
-// mdLinks
-// const mdLinks = (path, options) => {
-//     return new Promise((resolve, reject) => {
-//         if (fs.existsSync(path))
-
-//             verifyAbsolut = absolutePath(path);
-//             arrayContent = getMdFiles (verifyAbsolut)
-//             resolve(arrayContent)
-
-
-
-//     })
-//  }
-
-// mdLinks('readme.md')
-//     .then((res) => {
-//         console.log("si sirve", res);
-//     });
-
-
 
 module.exports = { absolutePath, getMdFiles, readFilePromise, processLink, getFileAllobjects, getvalidateLinks, statsLinks, statsValidatelinks };
