@@ -13,4 +13,3 @@ manejan texto plano (GitHub, foros, blogs, ...) y es muy común
 encontrar varios archivos en ese formato en cualquier tipo de repositorio
 (empezando por el tradicional `README.md`).
 
-httpses.wikipedia.orgwiki/Markdown
