@@ -1,8 +1,21 @@
 {
-  "name": "md-links",
+  "name": "soreyc-md-links",
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
+  },
+  "description": "Librería ejecutable con node.js que busca archivos Markdown y valida los enlaces",
+  "keywords": [
+    "md-links",
+    "links"
+  ],
+  "author": "Sorey Cortes",
+  "main": "index.js",
+  "bin": {
+    "md-links": "./cli.js"
+  },
+  "scripts": {
+    "test": "jest --coverage"
   },
   "dependencies": {
     "axios": "^1.1.3",
@@ -11,5 +24,8 @@
     "marked": "^4.1.1",
     "process.argv": "^0.6.0",
     "valid-path": "^2.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }

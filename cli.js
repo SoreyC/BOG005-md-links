@@ -4,6 +4,7 @@ const { mdLinks } = require('./index.js')
 const { statsValidatelinks, statsLinks } = require('./functions.js')
 const figlet = require('figlet')
 
+
 const argv = process.argv
 const MDvalidate = process.argv[2]
 
