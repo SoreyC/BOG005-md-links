@@ -8,7 +8,7 @@ const figlet = require('figlet')
 const argv = process.argv
 const MDvalidate = process.argv[2]
 
-console.log(chalk.cyanBright(figlet.textSync('mdLinks')));
+console.log(chalk.magenta(figlet.textSync('mdLinks')));
   
 
 const commandLine = (MDvalidate, argv) => {

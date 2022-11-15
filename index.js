@@ -31,4 +31,4 @@ module.exports = { mdLinks };
 
 //PRUEBAS
 //ruta vacia 'C:/Users/LABORATORIA/OneDrive/Documentos/MDlinks/BOG005-md-links/rutaVacia.txt'
-//rutas rotas 'C:/Users/LABORATORIA/OneDrive/Documentos/MDlinks/BOG005-md-links/Archivos-md-txt/readmeLinkRotos.md'
+//rutas rotas 'C:/Users/LABORATORIA/OneDrive/Documentos/MDlinks/BOG005-md-links/Archivos-md-txt/readmeLinkRotos.md' 
