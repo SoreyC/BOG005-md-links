@@ -1,6 +1,6 @@
 # Markdown Links
 
-![Md-links](/imgMdLinks/mdLinks.png)
+![Md-links](./imgMdLinks/mdLinks.png)
 
 ## Índice
 
