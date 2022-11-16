@@ -5,7 +5,7 @@
 ## Índice
 
 * [Diagrama de flujo](#Diagrama-de-flujo)
-* [Librería e instalación](#Libreria-e-instalación)
+* [Librería e instalación](#Librería-e-instalación)
 * [Modo de uso](#Modo-de-uso)
 
 ***
