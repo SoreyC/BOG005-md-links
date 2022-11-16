@@ -5,7 +5,7 @@
 ## Índice
 
 * [Diagrama de flujo](#Diagrama-de-flujo)
-* [Librería e instalación](#Libreria-e-istalación)
+* [Librería e instalación](#Libreria-e-instalación)
 * [Modo de uso](#Modo-de-uso)
 
 ***
@@ -52,9 +52,11 @@ Con `validate:true` :
 
 ## Librería e instalación
 
-Herramienta de línea de comando (CLI) y librería (o biblioteca - library) en JavaScript, que extrae los links encontrados en archivos md y muestra el status y estadistica de tus links y algunas estadísticas. Es una libreria ejecutable con node.js, 
+Herramienta de línea de comando (CLI) y librería (o biblioteca - library) en JavaScript, que extrae los links encontrados en archivos md y muestra el status y estadistica de estos links. Es una libreria ejecutable con node.js, ejecutando el siguiente comando:
 
-
+```js
+npm i soreyc-md-links
+```
 
 
 ## Modo de uso
