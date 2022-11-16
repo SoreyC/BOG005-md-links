@@ -1,6 +1,6 @@
 # Markdown Links
 
-![Md-links](../BOG005-md-links/imgMdLinks/mdLinks.png)
+![Md-links](./imgMdLinks/mdLinks.png)
 
 ## Índice
 
@@ -13,6 +13,8 @@
 ## Diagrama de flujo
 
 #### `mdLinks(path, options)`
+
+[Diagrama en figma](https://www.figma.com/file/DHHLSpTVh1kPjI7Yo38rIk/Untitled?node-id=0%3A1&t=CZC2yMfe1vGcIBmZ-0)
 
 ![Diagrama de flujo](Diagrama%20de%20flujo%20MdLinks.png)
 
@@ -152,4 +154,5 @@ Broken: 1
 ```
 
 **Proyecto Md-Links** [Sorey Cortés](https://github.com/SoreyC/BOG005-md-links)
+
 *Requerimiento Laboratoria* [README](https://github.com/Laboratoria/BOG005-md-links#readme)
