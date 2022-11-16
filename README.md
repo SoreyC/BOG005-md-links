@@ -1,6 +1,6 @@
 # Markdown Links
 
-![Md-links](./imgMdLinks/mdLinks.png)
+![Md-links](/imgMdLinks/mdLinks.png)
 
 ## Índice
 
@@ -16,7 +16,7 @@
 
 [Diagrama en figma](https://www.figma.com/file/DHHLSpTVh1kPjI7Yo38rIk/Untitled?node-id=0%3A1&t=CZC2yMfe1vGcIBmZ-0)
 
-![Diagrama de flujo](Diagrama%20de%20flujo%20MdLinks.png)
+![Diagrama de flujo](DiagramadeflujoMdLinks.png)
 
 ##### Argumentos
 
