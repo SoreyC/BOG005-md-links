@@ -16,7 +16,7 @@
 
 [Diagrama en figma](https://www.figma.com/file/DHHLSpTVh1kPjI7Yo38rIk/Untitled?node-id=0%3A1&t=CZC2yMfe1vGcIBmZ-0)
 
-![Diagrama de flujo](DiagramadeflujoMdLinks.png)
+![Diagrama de flujo](https://github.com/SoreyC/BOG005-md-links/blob/main/imgMdLinks/DiagramadeflujoMdLinks.png)
 
 ##### Argumentos
 
