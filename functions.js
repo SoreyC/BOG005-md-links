@@ -30,7 +30,7 @@ const absolutePath = (route) => {
       arrayMarkDown.push(pathContainer)
       // console.log(chalk.magenta(arrayMarkDown));
     } else if (isFile && readextName !== '.md') {
-      // console.log(chalk.red('Archivo no tiene extensión .md son', readextName))
+      // console.log(chalk.red('Archivo no tiene extensión .md', readextName))
     } else if (isDirectory === true) {
       fs.readdirSync(allFileMD).forEach(file => {
         let routePath = pathNode.join(allFileMD, file);

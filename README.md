@@ -1,6 +1,6 @@
 # Markdown Links
 
-![Md-links](./imgMdLinks/mdLinks.png)
+![Md-links](https://github.com/SoreyC/BOG005-md-links/blob/main/imgMdLinks/mdLinks.png)
 
 ## Índice
 

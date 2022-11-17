@@ -46,7 +46,7 @@ describe('absolutePath', () => {
     });
 
     it('Debería retornar en un array de objetos con href, text y file', (done) => {
-      const resolveDataFalse = mdLinks(('Archivos-md-txt'));
+      const resolveDataFalse = mdLinks('Archivos-md-txt');
       resolveDataFalse.then((res) => expect(res).toEqual(arrayFalse));
       done();
     });
